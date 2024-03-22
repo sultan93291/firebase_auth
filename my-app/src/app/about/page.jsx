@@ -4,10 +4,19 @@ import firebaseConfig from "@/Config/FireBase/firebaseConfig";
 import { getAuth, signOut } from "firebase/auth";
 import { useSelector } from "react-redux";
 import { selectUser } from "../Data/userSlice";
+
 // ##  checking for comment
 const Page = () => {
   const user = useSelector(selectUser);
   console.log(user);
+
+  if (user != null && user !== undefined) {
+    console.log(user);
+    console.log(user.emailVerified);
+    console.log(user.apiKey);
+    console.log(user.stsTokenManager.accessToken);
+  }
+
   const handlesignOut = async () => {
     const auth = getAuth();
     signOut(auth)
@@ -18,7 +27,6 @@ const Page = () => {
         alert("error singing out");
       });
   };
-
   return (
     <>
       <div>

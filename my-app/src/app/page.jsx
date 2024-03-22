@@ -7,11 +7,12 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
+//  track the change for files
+
 import firebaseConfig from "@/Config/FireBase/firebaseConfig";
 import { useRouter } from "next/navigation";
 import { setUser } from "./Data/userSlice";
 import { useDispatch } from "react-redux";
-
 
 export default function Home() {
   const [user, setuser] = useState(null);
@@ -26,15 +27,14 @@ export default function Home() {
   };
 
   const router = useRouter();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, user => {
       if (user && user.emailVerified) {
-        dispatch(setUser(user));
-        setuser(user);
-        console.log(user.displayName)
+        dispatch(setUser(user.toJSON()));
+        setuser(user.toJSON());
       }
     });
     return () => unsubscribe();
@@ -66,7 +66,7 @@ export default function Home() {
   };
 
   useEffect(() => {
-    if (user) {
+    if (user && user.emailVerified) {
       router.push("/about");
       console.log(user);
     }
