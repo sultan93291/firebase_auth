@@ -26,7 +26,6 @@ export default function Home() {
     setData(data => ({ ...data, [name]: value }));
   };
 
-  const router = useRouter();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -67,10 +66,11 @@ export default function Home() {
 
   useEffect(() => {
     if (user && user.emailVerified) {
-      router.push("/about");
       console.log(user);
     }
   }, [user]);
+
+ 
 
   return (
     <>

@@ -8,7 +8,7 @@ import { selectUser } from "../Data/userSlice";
 // ##  checking for comment
 const Page = () => {
   const user = useSelector(selectUser);
-  console.log(user);
+
 
   if (user != null && user !== undefined) {
     console.log(user);

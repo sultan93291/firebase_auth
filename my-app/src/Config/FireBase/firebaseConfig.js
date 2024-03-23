@@ -1,8 +1,8 @@
 // Import the functions you need from the SDKs you need
-import { config } from "dotenv";
+
 import { initializeApp } from "firebase/app";
 
-config({ path: "../../../.env" });
+
 
 const firebaseConfig = {
   apiKey: process.env.API_KEY || "AIzaSyASu4pSD9VSo3nvTu4JujDMAG77dRh-CxI",
