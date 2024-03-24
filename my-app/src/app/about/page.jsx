@@ -9,7 +9,6 @@ import { selectUser } from "../Data/userSlice";
 const Page = () => {
   const user = useSelector(selectUser);
 
-
   if (user != null && user !== undefined) {
     console.log(user);
     console.log(user.emailVerified);
@@ -19,6 +18,8 @@ const Page = () => {
 
   const handlesignOut = async () => {
     const auth = getAuth();
+  document.cookie =
+    "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     signOut(auth)
       .then(() => {
         alert("successfully sign out ");

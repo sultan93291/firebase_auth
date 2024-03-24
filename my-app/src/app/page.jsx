@@ -32,8 +32,11 @@ export default function Home() {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, user => {
       if (user && user.emailVerified) {
-        dispatch(setUser(user.toJSON()));
-        setuser(user.toJSON());
+        const NewUser = user.toJSON();
+        dispatch(setUser(NewUser));
+        setuser(NewUser);
+        const tokenId = NewUser.stsTokenManager.accessToken;
+        document.cookie = `accessToken=${tokenId}; path=/;`;
       }
     });
     return () => unsubscribe();
@@ -66,11 +69,8 @@ export default function Home() {
 
   useEffect(() => {
     if (user && user.emailVerified) {
-      console.log(user);
     }
   }, [user]);
-
- 
 
   return (
     <>
