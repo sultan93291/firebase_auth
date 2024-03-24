@@ -20,7 +20,6 @@ const login = () => {
   };
   const dispatch = useDispatch();
 
-
   const handleSubmit = e => {
     e.preventDefault();
     const auth = getAuth();
@@ -29,7 +28,10 @@ const login = () => {
       .then(usercredentials => {
         if (usercredentials.user) {
           alert("successfully logged log in ");
-          console.log(usercredentials.user.toJSON());
+          const newUser = usercredentials.user.toJSON();
+          const tokenId = newUser.stsTokenManager.accessToken;
+          document.cookie = `accessToken=${tokenId}; path=/;`;
+          window.location.reload();
         }
       })
       .catch(err => {
@@ -38,20 +40,6 @@ const login = () => {
       });
   };
 
-  
-  useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, user => {
-      if (user && user.emailVerified) {
-        const NewUser = user.toJSON();
-        dispatch(setUser(NewUser));
-        setuser(NewUser);
-        const tokenId = NewUser.stsTokenManager.accessToken;
-        document.cookie = `accessToken=${tokenId}; path=/;`;
-      }
-    });
-    return () => unsubscribe();
-  }, [handleSubmit]);
   return (
     <>
       <form onSubmit={handleSubmit}>

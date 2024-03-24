@@ -28,20 +28,6 @@ export default function Home() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, user => {
-      if (user && user.emailVerified) {
-        const NewUser = user.toJSON();
-        dispatch(setUser(NewUser));
-        setuser(NewUser);
-        const tokenId = NewUser.stsTokenManager.accessToken;
-        document.cookie = `accessToken=${tokenId}; path=/;`;
-      }
-    });
-    return () => unsubscribe();
-  }, []);
-
   const handleSubmit = e => {
     e.preventDefault();
     const { email, password } = Data;
@@ -53,7 +39,11 @@ export default function Home() {
         alert("User signed up successfully");
         sendEmailVerification(user)
           .then(() => {
-            alert("email verification link sent successfully");
+            alert("please verify your email address");
+            const newUser = user.toJSON();
+            const tokenId = newUser.stsTokenManager.accessToken;
+            document.cookie = `accessToken=${tokenId}; path=/;`;
+            window.location.reload();
           })
           .catch(e => {
             console.log(e);
@@ -66,11 +56,6 @@ export default function Home() {
         // ..
       });
   };
-
-  useEffect(() => {
-    if (user && user.emailVerified) {
-    }
-  }, [user]);
 
   return (
     <>
