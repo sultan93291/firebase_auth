@@ -40,6 +40,8 @@ export default function Home() {
 
   const dispatch = useDispatch();
 
+  
+
   const handleSubmit = e => {
     e.preventDefault();
     const { email, password } = Data;
@@ -104,7 +106,7 @@ export default function Home() {
                   onChange={handleForm}
                   className="relative h-full w-full  pl-[20px] pr-[40px] bg-rgba rounded-[15px] outline-none text-white placeholder:capitalize "
                 />
-                <BsPersonVcardFill className="absolute top-0 right-0 mt-[30px] text-white translate-y-[-50%] mr-[15px] text-[22px] " />
+                <BsPersonVcardFill className="absolute top-0 right-0 mt-[30px] text-white translate-y-[-50%] mr-[15px] text-[22px] hover:text-[#3cb8e4] transition delay-150 " />
               </div>
               <div className=" relative h-[60px] w-1/2">
                 <input
@@ -114,7 +116,7 @@ export default function Home() {
                   onChange={handleForm}
                   className="relative h-full w-full  pl-[20px] pr-[40px] bg-rgba rounded-[15px] outline-none text-white placeholder:capitalize "
                 />
-                <BsPersonVcardFill className="absolute top-0 right-0 mt-[30px] text-white translate-y-[-50%] mr-[15px] text-[22px] " />
+                <BsPersonVcardFill className="absolute top-0 right-0 mt-[30px] text-white translate-y-[-50%] mr-[15px] text-[22px] hover:text-[#3cb8e4] transition delay-150 " />
               </div>
             </div>
             <div className="h-[60px] relative">
@@ -125,7 +127,7 @@ export default function Home() {
                 onChange={handleForm}
                 className=" h-full w-full px-[20px]  bg-rgba rounded-[15px] outline-none text-white placeholder:capitalize "
               />
-              <MdEmail className="absolute top-0 right-0 mt-[30px] text-white translate-y-[-50%] mr-[15px] text-[22px] " />
+              <MdEmail className="absolute top-0 right-0 mt-[30px] text-white translate-y-[-50%] mr-[15px] text-[22px] hover:text-[#3cb8e4] transition delay-150 " />
             </div>
             <div className="h-[60px] relative">
               <input
@@ -137,12 +139,12 @@ export default function Home() {
               />
               {Hide ? (
                 <AiFillEyeInvisible
-                  className="absolute top-0 right-0 mt-[30px] text-white translate-y-[-50%] mr-[15px] text-[22px] "
+                  className="absolute top-0 right-0 mt-[30px] text-white translate-y-[-50%] mr-[15px] text-[22px] hover:text-[#3cb8e4] transition delay-150 "
                   onClick={handleShow}
                 />
               ) : (
                 <AiFillEye
-                  className="absolute top-0 right-0 mt-[30px] text-white translate-y-[-50%] mr-[15px] text-[22px] "
+                  className="absolute top-0 right-0 mt-[30px] text-white translate-y-[-50%] mr-[15px] text-[22px] hover:text-[#3cb8e4] transition delay-150 "
                   onClick={handleShow}
                 />
               )}
@@ -156,13 +158,23 @@ export default function Home() {
               {" "}
               change method
             </button>
-            <button
-              className="h-[60px] w-1/2 bg-[#3cb8e4] rounded-[30px] text-white text-[16px] capitalize "
-              type="submit"
-            >
-              {" "}
-              register
-            </button>
+            {Data.firstName && Data.lastName && Data.email && Data.password ? (
+              <button
+                className="h-[60px] w-1/2 bg-[#3cb8e4] rounded-[30px] text-white text-[16px] capitalize "
+                type="submit"
+              >
+                {" "}
+                register
+              </button>
+            ) : (
+              <button
+                className="h-[60px] w-1/2 bg-[#3cb8e4] rounded-[30px] text-white text-[16px] capitalize "
+                disabled
+              >
+                {" "}
+                register
+              </button>
+            )}
           </div>
         </form>
       </div>

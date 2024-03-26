@@ -1,5 +1,5 @@
 " use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 const RegisterLogin = () => {
   return (
@@ -16,7 +16,7 @@ const RegisterLogin = () => {
           <Link className="text-white text-[20px] capitalize  " href="/login">
             login
           </Link>
-          <Link className="text-white text-[20px] capitalize " href="/">
+          <Link className=" text-white text-[20px] capitalize " href="/">
             register
           </Link>
         </div>
