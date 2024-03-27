@@ -2,6 +2,15 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 const RegisterLogin = () => {
+  const [IsHome, setIsHome] = useState(false);
+
+  useEffect(() => {
+    const pathName = window.location.pathname;
+    if (pathName === "/") {
+      setIsHome(true);
+    }
+  }, []);
+
   return (
     <>
       <nav className=" relative z-50 flex h-[80px]  px-[100px] items-center justify-between ">
@@ -13,11 +22,21 @@ const RegisterLogin = () => {
           </h4>
         </div>
         <div className="flex gap-[40px] opacity-[0.7] ">
-          <Link className="text-white text-[20px] capitalize  " href="/login">
-            login
-          </Link>
-          <Link className=" text-white text-[20px] capitalize " href="/">
+          <Link
+            className={`${
+              IsHome ? "text-[#3cb8e4] " : "text-white"
+            }   text-[20px] capitalize `}
+            href="/"
+          >
             register
+          </Link>
+          <Link
+            className={`${
+              !IsHome ? "text-[#3cb8e4] " : "text-white"
+            }   text-[20px] capitalize `}
+            href="/login"
+          >
+            login
           </Link>
         </div>
       </nav>

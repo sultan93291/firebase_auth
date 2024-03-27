@@ -14,7 +14,6 @@ import { useRouter } from "next/navigation";
 import { setUser } from "./Data/userSlice";
 import { useDispatch } from "react-redux";
 import RegisterLogin from "./components/RegisterLogin";
-import { data } from "autoprefixer";
 import { BsPersonVcardFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { AiFillEye } from "react-icons/ai";
@@ -39,8 +38,6 @@ export default function Home() {
   };
 
   const dispatch = useDispatch();
-
-  
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -125,7 +122,7 @@ export default function Home() {
                 placeholder="enter your email adress"
                 name="email"
                 onChange={handleForm}
-                className=" h-full w-full px-[20px]  bg-rgba rounded-[15px] outline-none text-white placeholder:capitalize "
+                className=" h-full w-full pl-[20px] pr-[45px]  bg-rgba rounded-[15px] outline-none text-white placeholder:capitalize "
               />
               <MdEmail className="absolute top-0 right-0 mt-[30px] text-white translate-y-[-50%] mr-[15px] text-[22px] hover:text-[#3cb8e4] transition delay-150 " />
             </div>
@@ -135,7 +132,7 @@ export default function Home() {
                 placeholder="enter your password"
                 name="password"
                 onChange={handleForm}
-                className=" h-full w-full px-[20px]  bg-rgba rounded-[15px] outline-none text-white placeholder:capitalize "
+                className=" h-full w-full pl-[20px] pr-[45px]  bg-rgba rounded-[15px] outline-none text-white placeholder:capitalize "
               />
               {Hide ? (
                 <AiFillEyeInvisible
